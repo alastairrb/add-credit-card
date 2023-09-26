@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import Navbar from './Components/navbar';
 import './App.css';
+import CreditCardList from './Pages/credit-card-list'
+import AddCreditCard from './Pages/add-credit-card'
+import CountryList from './Pages/country-list'
+import { Route, Routes } from 'react-router-dom';
+import { CreditCardProvider } from './context -and-reducers/credit-card-context';
+import { CountryProvider } from './context -and-reducers/country-context';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App() {  
+  return  (
+    <>
+      <Navbar />
+      <div className='container'>           
+        <CountryProvider>
+          <CreditCardProvider>
+            <Routes>          
+                <Route path="/creditcardlist" element={<CreditCardList />} />
+                <Route path="/" element={<AddCreditCard />} />
+                <Route path="/countries" element={<CountryList />} />
+              </Routes>
+          </CreditCardProvider>                      
+        </CountryProvider>                  
+      </div>
+    </> 
+  )
 }
 
 export default App;
